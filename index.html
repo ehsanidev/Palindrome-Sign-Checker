@@ -203,6 +203,104 @@
     </div>
     
    <script>
+    // Main application functionality
+    function checkSigns() {
+        const sign1 = document.getElementById('sign1').value.toUpperCase().trim();
+        const sign2 = document.getElementById('sign2').value.toUpperCase().trim();
+        const sign3 = document.getElementById('sign3').value.toUpperCase().trim();
+        const sign4 = document.getElementById('sign4').value.toUpperCase().trim();
+
+        const result = document.getElementById('result');
+
+        if (isPalindrome(sign1) || isPalindrome(sign2) || 
+            isPalindrome(sign3) || isPalindrome(sign4)) {
+            result.textContent = "OPEN - Found a palindrome! 🎉";
+            result.className = "result open";
+        } else {
+            result.textContent = "TRASH - No palindromes found 🗑️";
+            result.className = "result trash";
+        }
+    }
+
+    function isPalindrome(str) {
+        if (!str) return false;
+        const cleanStr = str.replace(/\s/g, '');
+        const reversedStr = cleanStr.split('').reverse().join('');
+        return cleanStr === reversedStr;
+    }
+
+    // Test functionality
+    function runTests() {
+        console.clear();
+        runPalindromeTests();
+        runSignCheckTests();
+        console.log("✅ All tests completed.");
+    }
+
+    function runPalindromeTests() {
+        console.group("📘 Running Palindrome Function Tests...");
+
+        const palindromeTests = [
+            { input: "RACECAR", expected: true, description: "Simple palindrome (RACECAR)" },
+            { input: "MADAM", expected: true, description: "Simple palindrome (MADAM)" },
+            { input: "A MAN A PLAN A CANAL PANAMA", expected: true, description: "Phrase palindrome with spaces" },
+            { input: "HELLO", expected: false, description: "Non-palindrome word" },
+            { input: "", expected: false, description: "Empty string" },
+            { input: "A", expected: true, description: "Single character" },
+            { input: "AB BA", expected: true, description: "Palindrome with space" },
+            { input: "NOT A PALINDROME", expected: false, description: "Non-palindrome phrase" }
+        ];
+
+        palindromeTests.forEach(test => {
+            const result = isPalindrome(test.input);
+            const passed = result === test.expected;
+            if (passed) {
+                console.log(`✓ PASS: ${test.description} | "${test.input}"`);
+            } else {
+                console.error(`✗ FAIL: ${test.description} | Input: "${test.input}", Expected: ${test.expected}, Got: ${result}`);
+            }
+        });
+
+        console.groupEnd();
+    }
+
+    function runSignCheckTests() {
+        console.group("📘 Running Sign Check Function Tests...");
+
+        // Mock the DOM elements for testing
+        const mockInputs = {
+            sign1: { value: "" },
+            sign2: { value: "" },
+            sign3: { value: "" },
+            sign4: { value: "" }
+        };
+
+        const mockResult = { textContent: "", className: "" };
+
+        function fakeCheckSigns() {
+            // Override real DOM access
+            return {
+                checkSigns: () => {
+                    const sign1 = mockInputs.sign1.value;
+                    const sign2 = mockInputs.sign2.value;
+                    const sign3 = mockInputs.sign3.value;
+                    const sign4 = mockInputs.sign4.value;
+
+                    if (isPalindrome(sign1) || isPalindrome(sign2) || 
+                        isPalindrome(sign3) || isPalindrome(sign4)) {
+                        mockResult.textContent = "OPEN - Found a palindrome! 🎉";
+                        mockResult.className = "result open";
+                    } else {
+                        mockResult.textContent = "TRASH - No palindromes found 🗑️";
+                        mockResult.className = "result trash";
+                    }
+                },
+                getResult: () => mockResult.textContent.includes("OPEN") ? "OPEN" : "TRASH"
+            };
+        }
+
+        const signCheckTests = [
+            { signs: ["RACECAR", "HELLO", "WORLD", "TEST"], expected: "OPEN", description: "One palindrome in first position" },
             { signs: ["HELLO", "MADAM", "WORLD", "TEST"], expected: "OPEN", description: "One palindrome in second position" },
             { signs: ["HELLO", "WORLD", "ABBA", "TEST"], expected: "OPEN", description: "One palindrome in third position" },
             { signs: ["HELLO", "WORLD", "TEST", "A MAN A PLAN A CANAL PANAMA"], expected: "OPEN", description: "One palindrome in fourth position" },
