@@ -18,7 +18,7 @@ Examples:
   - `OPEN` – if at least one palindrome is found ✅
   - `TRASH` – if no palindromes are found ❌
 - Includes unit tests for both the palindrome checker and sign validator.
-- Tests run in the browser console instead of modifying the DOM.
+- All test results are shown in the **browser console**, not in the DOM.
 
 ## 🛠️ How to Use
 
@@ -34,6 +34,8 @@ All tests are logged to the **browser console**, not the page itself. You can se
 - Going to the **Console** tab.
 - Typing `runTests()` and pressing Enter.
 
+> 💡 No test output will appear on the webpage anymore – only in the console.
+
 ---
 
 ### 🎯 Purpose
@@ -42,3 +44,6 @@ This project demonstrates:
 - String manipulation in JavaScript.
 - Conditional logic based on input.
 - Writing and running basic unit tests in the browser.
+- Separating test output from UI to keep it clean and developer-focused.
+
+---
