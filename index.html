@@ -1,304 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Factory Palindrome Checker</title>
-  <style>
-    :root {
-      --pink-primary: #ff6b9e;
-      --pink-light: #ffb8d4;
-      --yellow-primary: #ffde59;
-      --yellow-light: #ffeb99;
-      --white: #ffffff;
-      --black: #333333;
-      --green: #4CAF50;
-      --red: #f44336;
-    }
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(135deg, var(--pink-light), var(--yellow-light));
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .container {
-      background-color: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      padding: 30px;
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      border: 5px solid var(--pink-primary);
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: var(--pink-primary);
-      margin-top: 0;
-      font-size: 2.5rem;
-      text-shadow: 2px 2px 0 var(--yellow-light);
-    }
-    .subtitle {
-      color: var(--black);
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-    .sign-inputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .sign-input {
-      padding: 12px;
-      border: 3px solid var(--yellow-primary);
-      border-radius: 10px;
-      font-size: 1rem;
-      text-align: center;
-      text-transform: uppercase;
-      background-color: var(--white);
-      transition: all 0.3s;
-    }
-    .sign-input:focus {
-      outline: none;
-      border-color: var(--pink-primary);
-      box-shadow: 0 0 10px var(--pink-light);
-    }
-    button {
-      background-color: var(--pink-primary);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      margin: 10px 0;
-      font-weight: bold;
-      transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(255, 107, 158, 0.4);
-    }
-    button:hover {
-      background-color: var(--yellow-primary);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 222, 89, 0.6);
-    }
-    .result {
-      margin-top: 25px;
-      padding: 20px;
-      border-radius: 10px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      display: none;
-    }
-    .open {
-      background-color: var(--yellow-primary);
-      color: var(--black);
-      display: block;
-      animation: pulse 1.5s infinite;
-    }
-    .trash {
-      background-color: #cccccc;
-      color: var(--black);
-      display: block;
-    }
-    .test-section {
-      background-color: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      padding: 20px;
-      width: 90%;
-      max-width: 600px;
-      border: 5px solid var(--yellow-primary);
-    }
-    .test-button {
-      background-color: var(--yellow-primary);
-      color: var(--black);
-      margin: 5px;
-      padding: 8px 15px;
-      font-size: 0.9rem;
-    }
-    .test-results {
-      margin-top: 15px;
-      text-align: left;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    @media (max-width: 600px) {
-      .sign-inputs {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Factory Palindrome Checker</title>
+    <style>
+        :root {
+            --pink-primary: #ff6b9e;
+            --pink-light: #ffb8d4;
+            --yellow-primary: #ffde59;
+            --yellow-light: #ffeb99;
+            --white: #ffffff;
+            --black: #333333;
+            --green: #4CAF50;
+            --red: #f44336;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, var(--pink-light), var(--yellow-light));
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border: 5px solid var(--pink-primary);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: var(--pink-primary);
+            margin-top: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0 var(--yellow-light);
+        }
+        .subtitle {
+            color: var(--black);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .sign-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .sign-input {
+            padding: 12px;
+            border: 3px solid var(--yellow-primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: var(--white);
+            transition: all 0.3s;
+        }
+        .sign-input:focus {
+            outline: none;
+            border-color: var(--pink-primary);
+            box-shadow: 0 0 10px var(--pink-light);
+        }
+        button {
+            background-color: var(--pink-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 107, 158, 0.4);
+        }
+        button:hover {
+            background-color: var(--yellow-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 222, 89, 0.6);
+        }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: none;
+        }
+        .open {
+            background-color: var(--yellow-primary);
+            color: var(--black);
+            display: block;
+            animation: pulse 1.5s infinite;
+        }
+        .trash {
+            background-color: #cccccc;
+            color: var(--black);
+            display: block;
+        }
+        .test-section {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border: 5px solid var(--yellow-primary);
+        }
+        .test-button {
+            background-color: var(--yellow-primary);
+            color: var(--black);
+            margin: 5px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 600px) {
+            .sign-inputs {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Sign Factory Checker</h1>
-    <p class="subtitle">Check if any of your signs are palindromes and can be saved!</p>
-    <div class="sign-inputs">
-      <input type="text" class="sign-input" id="sign1" placeholder="SIGN 1" maxlength="20">
-      <input type="text" class="sign-input" id="sign2" placeholder="SIGN 2" maxlength="20">
-      <input type="text" class="sign-input" id="sign3" placeholder="SIGN 3" maxlength="20">
-      <input type="text" class="sign-input" id="sign4" placeholder="SIGN 4" maxlength="20">
+    <div class="container">
+        <h1>Sign Factory Checker</h1>
+        <p class="subtitle">Check if any of your signs are palindromes and can be saved!</p>
+        <div class="sign-inputs">
+            <input type="text" class="sign-input" id="sign1" placeholder="SIGN 1" maxlength="20">
+            <input type="text" class="sign-input" id="sign2" placeholder="SIGN 2" maxlength="20">
+            <input type="text" class="sign-input" id="sign3" placeholder="SIGN 3" maxlength="20">
+            <input type="text" class="sign-input" id="sign4" placeholder="SIGN 4" maxlength="20">
+        </div>
+        <button onclick="checkSigns()">CHECK SIGNS</button>
+        <div id="result" class="result"></div>
     </div>
-    <button onclick="checkSigns()">CHECK SIGNS</button>
-    <div id="result" class="result"></div>
-  </div>
 
-  <div class="test-section">
-    <h2>Test Cases</h2>
-    <button class="test-button" onclick="runTests()">Run All Tests</button>
-    <button class="test-button" onclick="runPalindromeTests()">Palindrome Tests</button>
-    <button class="test-button" onclick="runSignCheckTests()">Sign Check Tests</button>
-  </div>
+    <!-- حذف شد: قسمت testResults -->
+    <div class="test-section">
+        <h2>Test Cases</h2>
+        <button class="test-button" onclick="runTests()">Run All Tests</button>
+        <button class="test-button" onclick="runPalindromeTests()">Palindrome Tests</button>
+        <button class="test-button" onclick="runSignCheckTests()">Sign Check Tests</button>
+    </div>
 
-  <script>
-    function checkSigns() {
-      const signs = [
-        document.getElementById('sign1').value.trim(),
-        document.getElementById('sign2').value.trim(),
-        document.getElementById('sign3').value.trim(),
-        document.getElementById('sign4').value.trim()
-      ];
-      const result = document.getElementById('result');
+    <script>
+        function checkSigns() {
+            const sign1 = document.getElementById('sign1').value.toUpperCase().trim();
+            const sign2 = document.getElementById('sign2').value.toUpperCase().trim();
+            const sign3 = document.getElementById('sign3').value.toUpperCase().trim();
+            const sign4 = document.getElementById('sign4').value.toUpperCase().trim();
+            const result = document.getElementById('result');
 
-      // Reset class
-      result.className = "result";
+            result.className = "result"; // Reset class
 
-      // Validate input
-      const validSigns = signs.map(s => s.toUpperCase());
-      if (validSigns.every(s => s === "")) {
-        result.textContent = "⚠️ Please enter at least one sign!";
-        result.classList.add("trash");
-        return;
-      }
-
-      if (validSigns.some(isPalindrome)) {
-        result.textContent = "OPEN - Found a palindrome! 🎉";
-        result.classList.add("open");
-      } else {
-        result.textContent = "TRASH - No palindromes found 🗑️";
-        result.classList.add("trash");
-      }
-    }
-
-    function isPalindrome(str) {
-      if (!str) return false;
-      const cleanStr = str.replace(/\s/g, '');
-      const reversedStr = cleanStr.split('').reverse().join('');
-      return cleanStr === reversedStr;
-    }
-
-    function runTests() {
-      console.clear();
-      runPalindromeTests();
-      runSignCheckTests();
-      console.log("✅ All tests completed.");
-    }
-
-    function runPalindromeTests() {
-      console.group("📘 Running Palindrome Function Tests...");
-      const tests = [
-        { input: "RACECAR", expected: true },
-        { input: "MADAM", expected: true },
-        { input: "A MAN A PLAN PANAMA", expected: true },
-        { input: "HELLO", expected: false },
-        { input: "", expected: false },
-        { input: "A", expected: true },
-        { input: "AB BA", expected: true },
-        { input: "NOT A PALINDROME", expected: false }
-      ];
-
-      tests.forEach(test => {
-        const result = isPalindrome(test.input);
-        const passed = result === test.expected;
-        if (passed) {
-          console.log(`✓ PASS | "${test.input}"`);
-        } else {
-          console.error(`✗ FAIL | Input: "${test.input}", Expected: ${test.expected}, Got: ${result}`);
-        }
-      });
-      console.groupEnd();
-    }
-
-    function runSignCheckTests() {
-      console.group("📘 Running Sign Check Function Tests...");
-
-      const mockInputs = {
-        sign1: { value: "" },
-        sign2: { value: "" },
-        sign3: { value: "" },
-        sign4: { value: "" }
-      };
-
-      const mockResult = {
-        status: null,
-        update(status) {
-          this.status = status;
-        }
-      };
-
-      function fakeCheckSigns() {
-        return {
-          checkSigns: () => {
-            const values = [
-              mockInputs.sign1.value,
-              mockInputs.sign2.value,
-              mockInputs.sign3.value,
-              mockInputs.sign4.value
-            ];
-            if (values.some(isPalindrome)) {
-              mockResult.update("OPEN");
+            if (isPalindrome(sign1) || isPalindrome(sign2) || 
+                isPalindrome(sign3) || isPalindrome(sign4)) {
+                result.textContent = "OPEN - Found a palindrome! 🎉";
+                result.classList.add("open");
             } else {
-              mockResult.update("TRASH");
+                result.textContent = "TRASH - No palindromes found 🗑️";
+                result.classList.add("trash");
             }
-          },
-          getResult: () => mockResult.status
-        };
-      }
-
-      const tests = [
-        { signs: ["RACECAR", "HELLO", "WORLD", "TEST"], expected: "OPEN" },
-        { signs: ["HELLO", "MADAM", "WORLD", "TEST"], expected: "OPEN" },
-        { signs: ["HELLO", "WORLD", "ABBA", "TEST"], expected: "OPEN" },
-        { signs: ["HELLO", "WORLD", "TEST", "A MAN A PLAN PANAMA"], expected: "OPEN" },
-        { signs: ["RACECAR", "MADAM", "ABBA", "NOON"], expected: "OPEN" },
-        { signs: ["HELLO", "WORLD", "TEST", "JAVASCRIPT"], expected: "TRASH" },
-        { signs: ["", "", "", ""], expected: "TRASH" },
-        { signs: ["A", "B", "C", "D"], expected: "OPEN" }
-      ];
-
-      const tester = fakeCheckSigns();
-
-      tests.forEach((test, index) => {
-        mockInputs.sign1.value = test.signs[0];
-        mockInputs.sign2.value = test.signs[1];
-        mockInputs.sign3.value = test.signs[2];
-        mockInputs.sign4.value = test.signs[3];
-
-        tester.checkSigns();
-        const actual = tester.getResult();
-        const passed = actual === test.expected;
-
-        if (passed) {
-          console.log(`✓ PASS Test ${index + 1} | Inputs: [${test.signs.join(", ")}]`);
-        } else {
-          console.error(`✗ FAIL Test ${index + 1} | Inputs: [${test.signs.join(", ")}], Expected: ${test.expected}, Got: ${actual}`);
         }
-      });
 
-      console.groupEnd();
-    }
-  </script>
+        function isPalindrome(str) {
+            if (!str) return false;
+            const cleanStr = str.replace(/\s/g, '');
+            const reversedStr = cleanStr.split('').reverse().join('');
+            return cleanStr === reversedStr;
+        }
+
+        function runTests() {
+            console.clear();
+            runPalindromeTests();
+            runSignCheckTests();
+            console.log("✅ All tests completed.");
+        }
+
+        function runPalindromeTests() {
+            console.group("📘 Running Palindrome Function Tests...");
+            const tests = [
+                { input: "RACECAR", expected: true, description: "Simple palindrome (RACECAR)" },
+                { input: "MADAM", expected: true, description: "Simple palindrome (MADAM)" },
+                { input: "A MAN A PLAN PANAMA", expected: true, description: "Phrase with spaces" },
+                { input: "HELLO", expected: false, description: "Non-palindrome word" },
+                { input: "", expected: false, description: "Empty string" },
+                { input: "A", expected: true, description: "Single character" },
+                { input: "AB BA", expected: true, description: "Palindrome with space" },
+                { input: "NOT A PALINDROME", expected: false, description: "Non-palindrome phrase" }
+            ];
+
+            tests.forEach(test => {
+                const result = isPalindrome(test.input);
+                const passed = result === test.expected;
+                if (passed) {
+                    console.log(`✓ PASS | "${test.input}"`);
+                } else {
+                    console.error(`✗ FAIL | Input: "${test.input}", Expected: ${test.expected}, Got: ${result}`);
+                }
+            });
+            console.groupEnd();
+        }
+
+        function runSignCheckTests() {
+            console.group("📘 Running Sign Check Function Tests...");
+
+            const mockInputs = {
+                sign1: { value: "" },
+                sign2: { value: "" },
+                sign3: { value: "" },
+                sign4: { value: "" }
+            };
+
+            const mockResult = {
+                status: null,
+                update(status) {
+                    this.status = status;
+                }
+            };
+
+            function fakeCheckSigns() {
+                return {
+                    checkSigns: () => {
+                        const values = [
+                            mockInputs.sign1.value,
+                            mockInputs.sign2.value,
+                            mockInputs.sign3.value,
+                            mockInputs.sign4.value
+                        ];
+                        if (values.some(isPalindrome)) {
+                            mockResult.update("OPEN");
+                        } else {
+                            mockResult.update("TRASH");
+                        }
+                    },
+                    getResult: () => mockResult.status
+                };
+            }
+
+            const tests = [
+                { signs: ["RACECAR", "HELLO", "WORLD", "TEST"], expected: "OPEN" },
+                { signs: ["HELLO", "MADAM", "WORLD", "TEST"], expected: "OPEN" },
+                { signs: ["HELLO", "WORLD", "ABBA", "TEST"], expected: "OPEN" },
+                { signs: ["HELLO", "WORLD", "TEST", "A MAN A PLAN PANAMA"], expected: "OPEN" },
+                { signs: ["RACECAR", "MADAM", "ABBA", "NOON"], expected: "OPEN" },
+                { signs: ["HELLO", "WORLD", "TEST", "JAVASCRIPT"], expected: "TRASH" },
+                { signs: ["", "", "", ""], expected: "TRASH" },
+                { signs: ["A", "B", "C", "D"], expected: "OPEN" }
+            ];
+
+            const tester = fakeCheckSigns();
+
+            tests.forEach((test, index) => {
+                mockInputs.sign1.value = test.signs[0];
+                mockInputs.sign2.value = test.signs[1];
+                mockInputs.sign3.value = test.signs[2];
+                mockInputs.sign4.value = test.signs[3];
+
+                tester.checkSigns();
+                const actual = tester.getResult();
+                const passed = actual === test.expected;
+
+                if (passed) {
+                    console.log(`✓ PASS Test ${index + 1} | Inputs: [${test.signs.join(", ")}]`);
+                } else {
+                    console.error(`✗ FAIL Test ${index + 1} | Inputs: [${test.signs.join(", ")}], Expected: ${test.expected}, Got: ${actual}`);
+                }
+            });
+
+            console.groupEnd();
+        }
+    </script>
 </body>
 </html>
