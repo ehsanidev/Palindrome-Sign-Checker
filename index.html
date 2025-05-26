@@ -202,161 +202,37 @@
         <div id="testResults" class="test-results"></div>
     </div>
     
-    <script>
-        // Main application functionality
-        function checkSigns() {
-            // Get input values
-            const sign1 = document.getElementById('sign1').value.toUpperCase().trim();
-            const sign2 = document.getElementById('sign2').value.toUpperCase().trim();
-            const sign3 = document.getElementById('sign3').value.toUpperCase().trim();
-            const sign4 = document.getElementById('sign4').value.toUpperCase().trim();
-            
-            // Check for palindromes
-            const result = document.getElementById('result');
-            
-            if (isPalindrome(sign1) || isPalindrome(sign2) || 
-                isPalindrome(sign3) || isPalindrome(sign4)) {
-                result.textContent = "OPEN - Found a palindrome! 🎉";
-                result.className = "result open";
+   <script>
+            { signs: ["HELLO", "MADAM", "WORLD", "TEST"], expected: "OPEN", description: "One palindrome in second position" },
+            { signs: ["HELLO", "WORLD", "ABBA", "TEST"], expected: "OPEN", description: "One palindrome in third position" },
+            { signs: ["HELLO", "WORLD", "TEST", "A MAN A PLAN A CANAL PANAMA"], expected: "OPEN", description: "One palindrome in fourth position" },
+            { signs: ["RACECAR", "MADAM", "ABBA", "NOON"], expected: "OPEN", description: "All palindromes" },
+            { signs: ["HELLO", "WORLD", "TEST", "JAVASCRIPT"], expected: "TRASH", description: "No palindromes" },
+            { signs: ["", "", "", ""], expected: "TRASH", description: "All empty strings" },
+            { signs: ["A", "B", "C", "D"], expected: "OPEN", description: "Single character palindromes" }
+        ];
+
+        const tester = fakeCheckSigns();
+
+        signCheckTests.forEach(test => {
+            mockInputs.sign1.value = test.signs[0];
+            mockInputs.sign2.value = test.signs[1];
+            mockInputs.sign3.value = test.signs[2];
+            mockInputs.sign4.value = test.signs[3];
+
+            tester.checkSigns();
+            const actual = tester.getResult();
+            const passed = actual === test.expected;
+
+            if (passed) {
+                console.log(`✓ PASS: ${test.description} | Inputs: [${test.signs.join(", ")}]`);
             } else {
-                result.textContent = "TRASH - No palindromes found 🗑️";
-                result.className = "result trash";
+                console.error(`✗ FAIL: ${test.description} | Inputs: [${test.signs.join(", ")}], Expected: ${test.expected}, Got: ${actual}`);
             }
-        }
-        
-        function isPalindrome(str) {
-            if (!str) return false;
-            const cleanStr = str.replace(/\s/g, '');
-            const reversedStr = cleanStr.split('').reverse().join('');
-            return cleanStr === reversedStr;
-        }
-        
-        // Test functionality
-        function runTests() {
-            runPalindromeTests();
-            runSignCheckTests();
-        }
-        
-        function runPalindromeTests() {
-            const testResults = document.getElementById('testResults');
-            testResults.innerHTML = '<h3>Palindrome Function Tests:</h3>';
-            
-            // Test cases for isPalindrome function
-            const palindromeTests = [
-                { input: "RACECAR", expected: true, description: "Simple palindrome (RACECAR)" },
-                { input: "MADAM", expected: true, description: "Simple palindrome (MADAM)" },
-                { input: "A MAN A PLAN A CANAL PANAMA", expected: true, description: "Phrase palindrome with spaces" },
-                { input: "HELLO", expected: false, description: "Non-palindrome word" },
-                { input: "", expected: false, description: "Empty string" },
-                { input: "A", expected: true, description: "Single character" },
-                { input: "AB BA", expected: true, description: "Palindrome with space" },
-                { input: "NOT A PALINDROME", expected: false, description: "Non-palindrome phrase" }
-            ];
-            
-            palindromeTests.forEach(test => {
-                const result = isPalindrome(test.input);
-                const passed = result === test.expected;
-                const testCase = document.createElement('div');
-                testCase.className = `test-case ${passed ? 'pass' : 'fail'}`;
-                testCase.innerHTML = `
-                    <strong>${test.description}</strong><br>
-                    Input: "${test.input}"<br>
-                    Expected: ${test.expected}, Actual: ${result}<br>
-                    ${passed ? '✓ PASS' : '✗ FAIL'}
-                `;
-                testResults.appendChild(testCase);
-            });
-        }
-        
-        function runSignCheckTests() {
-            const testResults = document.getElementById('testResults');
-            testResults.innerHTML += '<h3>Sign Check Function Tests:</h3>';
-            
-            // Mock the DOM elements for testing
-            const originalSign1 = document.getElementById('sign1');
-            const originalSign2 = document.getElementById('sign2');
-            const originalSign3 = document.getElementById('sign3');
-            const originalSign4 = document.getElementById('sign4');
-            const originalResult = document.getElementById('result');
-            
-            // Test cases for checkSigns function
-            const signCheckTests = [
-                { 
-                    signs: ["RACECAR", "HELLO", "WORLD", "TEST"], 
-                    expected: "OPEN", 
-                    description: "One palindrome in first position" 
-                },
-                { 
-                    signs: ["HELLO", "MADAM", "WORLD", "TEST"], 
-                    expected: "OPEN", 
-                    description: "One palindrome in second position" 
-                },
-                { 
-                    signs: ["HELLO", "WORLD", "ABBA", "TEST"], 
-                    expected: "OPEN", 
-                    description: "One palindrome in third position" 
-                },
-                { 
-                    signs: ["HELLO", "WORLD", "TEST", "A MAN A PLAN A CANAL PANAMA"], 
-                    expected: "OPEN", 
-                    description: "One palindrome in fourth position" 
-                },
-                { 
-                    signs: ["RACECAR", "MADAM", "ABBA", "NOON"], 
-                    expected: "OPEN", 
-                    description: "All palindromes" 
-                },
-                { 
-                    signs: ["HELLO", "WORLD", "TEST", "JAVASCRIPT"], 
-                    expected: "TRASH", 
-                    description: "No palindromes" 
-                },
-                { 
-                    signs: ["", "", "", ""], 
-                    expected: "TRASH", 
-                    description: "All empty strings" 
-                },
-                { 
-                    signs: ["A", "B", "C", "D"], 
-                    expected: "OPEN", 
-                    description: "Single character palindromes" 
-                }
-            ];
-            
-            signCheckTests.forEach(test => {
-                // Set up test inputs
-                originalSign1.value = test.signs[0];
-                originalSign2.value = test.signs[1];
-                originalSign3.value = test.signs[2];
-                originalSign4.value = test.signs[3];
-                
-                // Run the function
-                checkSigns();
-                
-                // Get the result
-                const actual = originalResult.textContent.includes("OPEN") ? "OPEN" : "TRASH";
-                const passed = actual === test.expected;
-                
-                // Create test case display
-                const testCase = document.createElement('div');
-                testCase.className = `test-case ${passed ? 'pass' : 'fail'}`;
-                testCase.innerHTML = `
-                    <strong>${test.description}</strong><br>
-                    Inputs: "${test.signs.join('", "')}"<br>
-                    Expected: ${test.expected}, Actual: ${actual}<br>
-                    ${passed ? '✓ PASS' : '✗ FAIL'}
-                `;
-                testResults.appendChild(testCase);
-            });
-            
-            // Clear the inputs after testing
-            originalSign1.value = "";
-            originalSign2.value = "";
-            originalSign3.value = "";
-            originalSign4.value = "";
-            originalResult.textContent = "";
-            originalResult.className = "result";
-        }
-    </script>
+        });
+
+        console.groupEnd();
+    }
+</script>
 </body>
   </html>
